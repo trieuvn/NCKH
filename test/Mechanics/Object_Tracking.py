@@ -4,7 +4,7 @@ import cv2
 from ultralytics import YOLO
 
 # Load the YOLO11 model
-model = YOLO("Models/yolov8mParking.pt")
+model = YOLO("YoloModel.pt")
 
 # Open the video file
 video_path = "car1.mp4"
