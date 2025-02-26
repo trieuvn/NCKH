@@ -1,6 +1,7 @@
 import cv2
 
 from ultralytics import YOLO
+from collections import deque
 
 # Load the YOLO11 model
 model = YOLO("Models\yolov8mParking.pt")
@@ -9,10 +10,20 @@ model = YOLO("Models\yolov8mParking.pt")
 video_path = "car1.mp4"
 cap = cv2.VideoCapture(video_path)
 
+#Ticket queue
+tickets = deque()
+tickets.append(0)
+tickets.append(0)
+
+#Check in loc
 pt1 = (511, 127)
 pt2 = (503, 188)
 
-tracked_ids = set()
+#destination loc
+destx = (211, 127)
+desty = (230, 188)
+
+tracked_ids = {}
 
 #Check giao nhau
 def is_intersect(box, pt1, pt2):
@@ -26,8 +37,6 @@ def is_intersect(box, pt1, pt2):
 while cap.isOpened():
     # Read a frame from the video
     success, frame = cap.read()
-
-    cv2.rectangle(frame,pt1,pt2,(0,255,0),2)
 
     if success:
         # Run YOLO11 tracking on the frame, persisting tracks between frames
@@ -44,13 +53,25 @@ while cap.isOpened():
 
                 # Nếu object đi qua vùng, lưu ID vào danh sách
                 if is_intersect(box, pt1, pt2):
-                    tracked_ids.add(obj_id)
+                    if obj_id not in tracked_ids and tickets:
+                        tracked_ids[obj_id] = tickets.popleft()  # Gán ticket từ hàng đợi
+
+                # Nếu object có ticket = 1 và đi vào vùng đích -> Hiển thị "Invalid Ticket"
+                if obj_id in tracked_ids and tracked_ids[obj_id] == 1 and is_intersect(box, destx, desty):
+                    cv2.putText(annotated_frame, "Invalid Ticket", (x1, y1 - 30),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
 
                 # Nếu object đã đi qua, vẽ box màu đỏ
                 color = (0, 0, 255) if obj_id in tracked_ids else (255, 255, 255)
                 cv2.rectangle(annotated_frame, (x1, y1), (x2, y2), color, 2)
 
+                # Hiển thị ticket được gán
+                if obj_id in tracked_ids:
+                    cv2.putText(annotated_frame, f"Ticket: {tracked_ids[obj_id]}", (x1, y1 - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
+        cv2.rectangle(annotated_frame, pt1, pt2, (0, 255, 0), 2)
+        cv2.rectangle(annotated_frame, destx, desty, (255, 255, 0), 2)
         # Display the annotated frame
         cv2.imshow("YOLO11 Tracking", annotated_frame)
 
