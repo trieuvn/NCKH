@@ -12,18 +12,25 @@ cap = cv2.VideoCapture(video_path)
 
 #Ticket queue
 tickets = deque()
-tickets.append(0)
-tickets.append(0)
+def addTicket(number):
+    tickets.append(number)
 
 #Check in loc
 pt1 = (511, 127)
 pt2 = (503, 188)
+
+def setCheckIn(self,x, w, y, h):
+    self.pt1 = (x,x+w)
+    self.pt2 = (y,y+h)
 
 #destination loc
 destx = (211, 127)
 desty = (230, 188)
 
 tracked_ids = {}
+
+addTicket(1)
+addTicket(2)
 
 #Check giao nhau
 def is_intersect(box, pt1, pt2):
