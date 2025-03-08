@@ -6,7 +6,7 @@ from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 
 class Ui_Form(object):
-
+"------------------------------------------------------------------------------------"
     def openMenu3(self, Form):
         try:
                 from Menu3 import Ui_MainWindow  
@@ -21,7 +21,7 @@ class Ui_Form(object):
                 print("Lỗi: menu3 không có Ui_MainWindow:", e)
         except Exception as e:
                 print(" Lỗi không xác định:", e)
-    
+    "------------------------------------------------------------------------------------"
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(800, 600)
@@ -212,7 +212,9 @@ class Ui_Form(object):
         self.label_8.setText(_translate("Form", "Hi,\n"
 "Welcome to my youtube channel.\n"
 "Don\'t forget to subscribe."))
+        "------------------------------------------------------------------------------------"
         self.pushButton.clicked.connect(lambda: self.openMenu3(Form))
+        "------------------------------------------------------------------------------------"
 if __name__ == "__main__":  
         app = QtWidgets.QApplication(sys.argv)
         Form = QtWidgets.QWidget()
