@@ -225,7 +225,7 @@ padding-bottom:7px;</string>
       <x>318</x>
       <y>383</y>
       <width>141</width>
-      <height>31</height>
+      <height>32</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">

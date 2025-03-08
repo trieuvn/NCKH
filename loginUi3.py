@@ -1,18 +1,35 @@
-######################################################
-##  SihinaCode > Search YouTube for more tutorials  ##
-######################################################
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys, res
+import sys, res,os
+from PyQt5.QtCore import QUrl
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
+from PyQt5.QtMultimediaWidgets import QVideoWidget
 
 class Ui_Form(object):
+
+    def openMenu3(self, Form):
+        try:
+                from Menu3 import Ui_MainWindow  
+                self.window = QtWidgets.QMainWindow()  
+                self.ui = Ui_MainWindow()
+                self.ui.setupUi(self.window)
+                self.window.show()
+                Form.close()  
+        except ImportError as e:
+                print("Lỗi Import menu3:", e)
+        except AttributeError as e:
+                print("Lỗi: menu3 không có Ui_MainWindow:", e)
+        except Exception as e:
+                print(" Lỗi không xác định:", e)
+    
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(625, 565)
+        Form.resize(800, 600)
         Form.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         Form.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.widget = QtWidgets.QWidget(Form)
         self.widget.setGeometry(QtCore.QRect(30, 30, 550, 500))
+        
         self.widget.setStyleSheet("QPushButton#pushButton{\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(11, 131, 120, 219), stop:1 rgba(85, 98, 112, 226));\n"
 "    color:rgba(255, 255, 255, 210);\n"
@@ -178,6 +195,7 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+        
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
@@ -194,8 +212,8 @@ class Ui_Form(object):
         self.label_8.setText(_translate("Form", "Hi,\n"
 "Welcome to my youtube channel.\n"
 "Don\'t forget to subscribe."))
-
-if __name__ == "__main__":
+        self.pushButton.clicked.connect(lambda: self.openMenu3(Form))
+if __name__ == "__main__":  
         app = QtWidgets.QApplication(sys.argv)
         Form = QtWidgets.QWidget()
         ui = Ui_Form()

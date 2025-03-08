@@ -135,17 +135,9 @@
            <widget class="QWidget" name="page_8">
             <layout class="QGridLayout" name="gridLayout_11">
              <item row="0" column="1">
-              <widget class="QLabel" name="label">
-               <property name="font">
-                <font>
-                 <pointsize>20</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Main Window</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
+              <widget class="QGroupBox" name="groupBox">
+               <property name="title">
+                <string/>
                </property>
               </widget>
              </item>
@@ -689,7 +681,7 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="../feather/resources.qrc">
+                   <iconset>
                     <normaloff>:/blueIcons/search.svg</normaloff>:/blueIcons/search.svg</iconset>
                   </property>
                   <property name="iconSize">
