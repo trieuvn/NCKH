@@ -7,6 +7,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
+    "------------------------------------------------------------------------------------"
     def toggle_groupbox(self):
         if self.pushButton_6.isChecked() and self.car_btn.isChecked():
             self.groupBox.setVisible(True)  
@@ -18,6 +19,7 @@ class Ui_MainWindow(object):
         video_path = r"C:\Users\Phuc\Documents\NCKH\test\Demo.avi"
         self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(video_path)))
         self.mediaPlayer.play()
+    "------------------------------------------------------------------------------------"
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 502)
@@ -341,6 +343,7 @@ class Ui_MainWindow(object):
         self.pushButton_8.setText(_translate("MainWindow", "Camera 3"))
         self.pushButton_10.setText(_translate("MainWindow", "Website"))
         self.pushButton_11.setText(_translate("MainWindow", "Facebook"))
+        "------------------------------------------------------------------------------------"
         'Create a video widget'
         self.videoWidget = QVideoWidget(self.groupBox)  
         self.mediaPlayer = QMediaPlayer()
@@ -359,6 +362,7 @@ class Ui_MainWindow(object):
         self.search_btn.clicked.connect(self.toggle_groupbox)
         self.home_btn.clicked.connect(self.toggle_groupbox)
         self.pushButton_5.clicked.connect(self.toggle_groupbox)
+        "------------------------------------------------------------------------------------"
         
 import res
 

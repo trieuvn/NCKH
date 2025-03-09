@@ -4,10 +4,43 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-
+from PyQt5.QtWidgets import QMessageBox
+import pyodbc
 class Ui_Form(object):
-"------------------------------------------------------------------------------------"
-    def openMenu3(self, Form):
+ def connect_db(self):
+    try:
+        conn = pyodbc.connect(
+            "DRIVER={SQL Server};"
+            "SERVER=DESKTOP-PEG8VKH;"
+            "DATABASE=CarPark;"
+            "Trusted_Connection=yes;"
+        )
+        return conn
+    except Exception as e:
+        print(f"Lỗi kết nối DB: {e}")
+        return None
+ def check_login(self, username, password):
+    conn = self.connect_db()
+    if conn is None:
+        return False
+
+    try:
+        cursor = conn.cursor()
+        query = "SELECT Password FROM Manager WHERE UserName = ?"
+        cursor.execute(query, (username,))
+        result = cursor.fetchone()
+
+        if result:
+            stored_password = result[0]
+            return stored_password == password 
+
+        return False
+    except Exception as e:
+        print("Lỗi đăng nhập:", e)
+        return False
+    finally:
+        conn.close()
+ def openMenu3(self, Form):
         try:
                 from Menu3 import Ui_MainWindow  
                 self.window = QtWidgets.QMainWindow()  
@@ -21,8 +54,18 @@ class Ui_Form(object):
                 print("Lỗi: menu3 không có Ui_MainWindow:", e)
         except Exception as e:
                 print(" Lỗi không xác định:", e)
-    "------------------------------------------------------------------------------------"
-    def setupUi(self, Form):
+        from PyQt5.QtWidgets import QMessageBox
+
+ def handle_login(self, Form):
+    username = self.lineEdit.text()  
+    password = self.lineEdit_2.text()
+    
+    if self.check_login(username, password):
+        QMessageBox.information(None, "Thông báo", "Đăng nhập thành công!")  
+        self.openMenu3(Form)
+    else:
+        QMessageBox.warning(None, "Lỗi", "Tài khoản hoặc mật khẩu sai!")
+ def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(800, 600)
         Form.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -194,9 +237,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
-
-        
-    def retranslateUi(self, Form):
+ def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label_4.setText(_translate("Form", "Log In"))
@@ -213,7 +254,7 @@ class Ui_Form(object):
 "Welcome to my youtube channel.\n"
 "Don\'t forget to subscribe."))
         "------------------------------------------------------------------------------------"
-        self.pushButton.clicked.connect(lambda: self.openMenu3(Form))
+        self.pushButton.clicked.connect(lambda: self.handle_login(Form))
         "------------------------------------------------------------------------------------"
 if __name__ == "__main__":  
         app = QtWidgets.QApplication(sys.argv)
