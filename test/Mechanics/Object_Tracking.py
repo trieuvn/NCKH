@@ -1,10 +1,12 @@
 import cv2
-
+import torch
 from ultralytics import YOLO
 from collections import deque
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
 # Load the YOLO11 model
-model = YOLO("Models\yolov8mParking.pt")
+model = YOLO("Models\yolov8mParking.pt").to(device)
 
 # Open the video file
 video_path = "car1.mp4"
