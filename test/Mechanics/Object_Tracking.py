@@ -6,6 +6,7 @@ from collections import deque
 # Kiểm tra và chọn thiết bị
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
+accuracy_limit = 0.75
 
 # Load mô hình YOLO
 try:
@@ -84,7 +85,7 @@ while cap.isOpened():
     if results[0].boxes is not None and results[0].boxes.id is not None:
         for box, conf, obj_id in zip(results[0].boxes.xyxy, results[0].boxes.conf, results[0].boxes.id):
             # Lọc các box có confidence <= 0.8
-            if conf <= 0.7:
+            if conf <= accuracy_limit:
                 continue
 
             obj_id = int(obj_id)
