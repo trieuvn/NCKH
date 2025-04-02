@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a57d589-fdfb-419d-937e-70fb6c677973" name="Changes" comment="">
+    <list default="true" id="5a57d589-fdfb-419d-937e-70fb6c677973" name="Changes" comment="merge">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Menu3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/Mechanics/Object_Tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/Mechanics/Object_Tracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Mechanics/Picker.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/Mechanics/Picker.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +18,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;trieuvn&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/trieuvn/NCKH.git&quot;,
+    &quot;accountId&quot;: &quot;089ec349-c4f5-48d8-9c39-5ec785cc828b&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -26,10 +41,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python tests.Doctests in parking_management.executor": "Run",
+    "Python.Menu3.executor": "Run",
     "Python.Object_Tracking.executor": "Run",
+    "Python.Picker.executor": "Run",
+    "Python.atonnations.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Train",
+    "git-widget-placeholder": "main",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -50,5 +69,16 @@
       <updated>1741360536775</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
             self.groupBox.setVisible(False) 
             self.mediaPlayer.stop()
     def play_video(self):
-        video_path = r"C:\Users\Phuc\Documents\NCKH\test\Demo.avi"
+        video_path = r"test/Mechanics/car1.mp4"
         self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(video_path)))
         self.mediaPlayer.play()
     "------------------------------------------------------------------------------------"
